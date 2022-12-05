@@ -13,10 +13,26 @@
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 (uiop:define-package #:aoc-2022/days/day1
-  (:use #:cl)
+  (:use #:cl #:arrow-macros)
+  (:local-nicknames (#:clu #:cl-utilities))
   (:export #:day1))
 
 (in-package #:aoc-2022/days/day1)
 
+(defun read-lines ()
+  (loop :for line = (read-line nil nil) :while line :collect line))
+
+(defun to-int (x)
+  (unless (equal x "")
+    (parse-integer x)))
+
+(defun sum (l)
+  (reduce #'+ l))
+
 (defun day1 (&rest args)
-  (format T "Hi I am day 1~%"))
+  (->> (read-lines)
+       (mapcar #'to-int)
+       (clu:split-sequence nil)
+       (mapcar #'sum)
+       (reduce #'max)
+       (format T "~A~%")))

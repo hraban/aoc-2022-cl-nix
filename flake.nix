@@ -26,6 +26,7 @@
                 asdf
                 alexandria
                 arrow-macros
+                cl-utilities
               ];
               src = cleanSource ./.;
               meta = {
