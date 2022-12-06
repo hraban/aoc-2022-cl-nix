@@ -21,6 +21,7 @@
         {
           packages = {
             default = lispDerivation {
+              name = "aoc";
               lispSystem = "aoc-2022";
               lispDependencies = [
                 asdf

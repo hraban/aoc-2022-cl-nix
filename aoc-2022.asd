@@ -4,6 +4,6 @@
   :version "0.1"
   :author "Hraban Luyat"
   :build-operation "program-op"
-  :build-pathname "bin/aoc-2022"
+  :build-pathname "bin/aoc"
   :entry-point "aoc-2022:main"
   :depends-on ("aoc-2022/main"))
