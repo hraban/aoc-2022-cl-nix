@@ -15,7 +15,9 @@
 (defpackage #:aoc-2022x/days/day3
   (:use #:cl #:arrow-macros
         #:aoc-2022x/utils)
-  (:local-nicknames (#:clu #:cl-utilities))
+  (:import-from #:rutils)
+  (:local-nicknames (#:clu #:cl-utilities)
+                    (#:alex #:alexandria))
   (:export #:day3))
 
 (in-package #:aoc-2022x/days/day3)
@@ -32,7 +34,6 @@
 
 (defun process1-line (s)
   (->> s
-       (concatenate 'list)
        split
        (apply #'intersection)
        first
@@ -43,10 +44,20 @@
        (mapcar #'process1-line)
        sum))
 
+(defun process2-group (g)
+  (->> g
+       (reduce #'intersection)
+       first
+       score))
+
 (defun process2 (l)
-  (error "Todo"))
+  (->> l
+       (rutils:group 3)
+       (mapcar #'process2-group)
+       sum))
 
 (defun day3 (&optional arg)
   (->> (read-lines)
+       (mapcar (alex:curry #'concatenate 'list))
        (funcall (if (equal arg "2") #'process2 #'process1))
        (format T "~A~%")))

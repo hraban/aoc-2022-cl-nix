@@ -57,6 +57,7 @@
                 arrow-macros
                 cl-utilities
                 infix-math
+                rutils
                 winfer
               ];
               src = cleanSource ./.;
