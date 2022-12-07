@@ -12,18 +12,18 @@
 ;; You should have received a copy of the GNU Affero General Public License
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-(defpackage #:aoc-2022x/days/day1
-  (:use #:cl #:arrow-macros
-        #:aoc-2022x/days/utils)
-  (:local-nicknames (#:clu #:cl-utilities))
-  (:export #:day1))
+(uiop:define-package #:aoc-2022x/days/utils
+  (:use #:cl #:arrow-macros)
+  (:export #:read-lines #:to-int))
 
-(in-package #:aoc-2022x/days/day1)
+(in-package #:aoc-2022x/days/utils)
 
-(defun day1 (&rest args)
-  (->> (read-lines)
-       (mapcar #'to-int)
-       (clu:split-sequence nil)
-       (mapcar #'sum)
-       (reduce #'max)
-       (format T "~A~%")))
+(defun read-lines ()
+  (loop :for line = (read-line nil nil) :while line :collect line))
+
+(defun to-int (x)
+  (unless (equal x "")
+    (parse-integer x)))
+
+(defun sum (l)
+  (reduce #'+ l))

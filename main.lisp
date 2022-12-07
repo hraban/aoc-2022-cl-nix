@@ -12,18 +12,18 @@
 ;; You should have received a copy of the GNU Affero General Public License
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-(uiop:define-package #:aoc-2022
-  (:nicknames #:aoc-2022/main)
-  (:use #:cl
-        #:aoc-2022/days/day1)
+(uiop:define-package #:aoc-2022x
+  (:nicknames #:aoc-2022x/main)
+  (:use #:cl)
+  (:import-from #:aoc-2022x/days/day1)
   (:export #:main))
 
-(in-package #:aoc-2022/main)
+(in-package #:aoc-2022x/main)
 
 (defun main-aux (day &rest etc)
   ;; 🤷 whatever
   (apply (find-symbol (string-upcase day)
-                      (format NIL "AOC-2022/DAYS/~:@(~A~)" day))
+                      (format NIL "AOC-2022X/DAYS/~:@(~A~)" day))
          etc))
 
 (defun main ()
