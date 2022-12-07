@@ -14,7 +14,8 @@
 
 (uiop:define-package #:aoc-2022x/days/utils
   (:use #:cl #:arrow-macros)
-  (:export #:read-lines #:to-int))
+  (:local-nicknames (#:alex #:alexandria))
+  (:export #:read-lines #:to-int #:sum #:amapcar))
 
 (in-package #:aoc-2022x/days/utils)
 
@@ -27,3 +28,7 @@
 
 (defun sum (l)
   (reduce #'+ l))
+
+(defun amapcar (f &rest ls)
+  "Like mapcar but assumes every element of l is a list of args to apply"
+  (apply #'mapcar (alex:curry #'apply f) ls))
