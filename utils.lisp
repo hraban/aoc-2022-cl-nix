@@ -15,7 +15,7 @@
 (uiop:define-package #:aoc-2022x/utils
   (:use #:cl #:arrow-macros)
   (:local-nicknames (#:alex #:alexandria))
-  (:export #:read-lines #:to-int #:sum #:amapcar))
+  (:export #:read-lines #:to-int #:sum #:amapcar #:-map))
 
 (in-package #:aoc-2022x/utils)
 
@@ -32,3 +32,7 @@
 (defun amapcar (f &rest ls)
   "Like mapcar but assumes every element of l is a list of args to apply"
   (apply #'mapcar (alex:curry #'apply f) ls))
+
+(defmacro -map (body seq)
+  "Anaphoric mapcar, binding the iterated value to ‘it’"
+  `(mapcar (lambda (,(intern "IT")) ,body) ,seq))

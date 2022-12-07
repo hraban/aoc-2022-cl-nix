@@ -32,28 +32,22 @@
           (- (char-code c) (char-code #\a))
           (+ 26 (- (char-code c) (char-code #\A))))))
 
-(defun process1-line (s)
-  (->> s
-       split
-       (apply #'intersection)
-       first
-       score))
-
 (defun process1 (lines)
   (->> lines
-       (mapcar #'process1-line)
+       (-map (->> it
+                  split
+                  (apply #'intersection)
+                  first
+                  score))
        sum))
-
-(defun process2-group (g)
-  (->> g
-       (reduce #'intersection)
-       first
-       score))
 
 (defun process2 (l)
   (->> l
        (rutils:group 3)
-       (mapcar #'process2-group)
+       (-map (->> it
+                  (reduce #'intersection)
+                  first
+                  score))
        sum))
 
 (defun day3 (&optional arg)

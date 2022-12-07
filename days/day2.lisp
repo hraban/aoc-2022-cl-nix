@@ -32,23 +32,22 @@ RPS is 0, 1, 2 for rock, paper, scissors.
   ($ 3lw + rps + 1))
 
 (defun score1 (o m)
-  ($ (total ((m - o + 1) mod 3) m)))
+  ($ (total ((m - o + 1) mod 3)
+            m)))
 
 (defun score2 (o m)
-  ($ (total m ((o + m - 1) mod 3))))
+  ($ (total m
+            ((o + m - 1) mod 3))))
 
 (defun parse-line (o _ m)
   ($ (list ((char-code o) - (char-code #\A))
            ((char-code m) - (char-code #\X)))))
 
-(defun line (str)
-  (->> str
-       (concatenate 'list)
-       (apply #'parse-line)))
-
 (defun day2 (&optional part)
   (->> (read-lines)
-       (mapcar #'line)
+       (-map (->> it
+                  (concatenate 'list)
+                  (apply #'parse-line)))
        (amapcar (if (string= part "2") #'score2 #'score1))
        sum
        print))
