@@ -23,14 +23,19 @@
 ;; Rock, Paper, Scissors:
 ;; R = 0, P = 1, S = 2
 
+(defun total (lw rps)
+  "Compute the total score for one game.
+
+LW is 0, 1, 2 for respectively loss, draw, win.
+RPS is 0, 1, 2 for rock, paper, scissors.
+"
+  ($ 3lw + rps + 1))
+
 (defun score1 (o m)
-  ($ ((m - o + 1) mod 3) * 3
-     + m + 1))
+  ($ (total ((m - o + 1) mod 3) m)))
 
 (defun score2 (o m)
-  ($ 3m
-     +
-     ((o + m - 1) mod 3) + 1))
+  ($ (total m ((o + m - 1) mod 3))))
 
 (defun parse-line (o _ m)
   ($ (list ((char-code o) - (char-code #\A))
