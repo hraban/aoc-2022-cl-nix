@@ -20,10 +20,19 @@
 
 (in-package #:aoc-2022x/days/day1)
 
-(defun day1 (&rest args)
+(defun process1 (l)
+  (reduce #'max l))
+
+(defun process2 (l)
+  (-> l
+      (sort #'>)
+      (subseq 0 3)
+      sum))
+
+(defun day1 (&optional arg)
   (->> (read-lines)
        (mapcar #'to-int)
        (clu:split-sequence nil)
        (mapcar #'sum)
-       (reduce #'max)
+       (funcall (if (equal arg "2") #'process2 #'process1))
        (format T "~A~%")))
