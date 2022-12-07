@@ -12,12 +12,12 @@
 ;; You should have received a copy of the GNU Affero General Public License
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-(uiop:define-package #:aoc-2022x/days/utils
+(uiop:define-package #:aoc-2022x/utils
   (:use #:cl #:arrow-macros)
   (:local-nicknames (#:alex #:alexandria))
   (:export #:read-lines #:to-int #:sum #:amapcar))
 
-(in-package #:aoc-2022x/days/utils)
+(in-package #:aoc-2022x/utils)
 
 (defun read-lines ()
   (loop :for line = (read-line nil nil) :while line :collect line))

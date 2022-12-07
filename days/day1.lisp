@@ -14,7 +14,7 @@
 
 (defpackage #:aoc-2022x/days/day1
   (:use #:cl #:arrow-macros
-        #:aoc-2022x/days/utils)
+        #:aoc-2022x/utils)
   (:local-nicknames (#:clu #:cl-utilities))
   (:export #:day1))
 

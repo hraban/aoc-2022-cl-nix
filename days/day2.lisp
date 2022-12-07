@@ -13,7 +13,7 @@
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 (uiop:define-package #:aoc-2022x/days/day2
-  (:use #:cl #:arrow-macros :aoc-2022x/days/utils)
+  (:use #:cl #:arrow-macros :aoc-2022x/utils)
   (:import-from #:infix-math #:$)
   (:local-nicknames (#:clu #:cl-utilities))
   (:export #:day2))
