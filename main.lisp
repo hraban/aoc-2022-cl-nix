@@ -15,8 +15,7 @@
 (uiop:define-package #:aoc-2022x
   (:nicknames #:aoc-2022x/main)
   (:use #:cl)
-  (:import-from #:aoc-2022x/days/day1)
-  (:import-from #:aoc-2022x/days/day2)
+  (:import-from #:aoc-2022x/days/*)
   (:export #:main))
 
 (in-package #:aoc-2022x/main)

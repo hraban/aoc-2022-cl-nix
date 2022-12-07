@@ -15,9 +15,13 @@
       url = "github:Wukix/wu-decimal";
       flake = false;
     };
+    winfer-src = {
+      url = "github:privet-kitty/wild-package-inferred-system";
+      flake = false;
+    };
   };
   outputs = {
-    self, nixpkgs, hly-nixpkgs, gitignore, flake-utils, infix-src, wu-src
+    self, nixpkgs, hly-nixpkgs, gitignore, flake-utils, infix-src, wu-src, winfer-src
   }:
     flake-utils.lib.eachDefaultSystem (system:
       let
@@ -30,6 +34,11 @@
         wu = lispDerivation {
           lispSystem = "wu-decimal";
           src = wu-src;
+        };
+        winfer = lispDerivation {
+          lispSystem = "wild-package-inferred-system";
+          src = winfer-src;
+          lispCheckDependencies = [ fiveam ];
         };
         infix-math = lispDerivation {
           lispSystem = "infix-math";
@@ -48,6 +57,7 @@
                 arrow-macros
                 cl-utilities
                 infix-math
+                winfer
               ];
               src = cleanSource ./.;
               meta = {

@@ -88,7 +88,24 @@
         "hly-nixpkgs": "hly-nixpkgs",
         "infix-src": "infix-src",
         "nixpkgs": "nixpkgs",
+        "winfer-src": "winfer-src",
         "wu-src": "wu-src"
+      }
+    },
+    "winfer-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1621522883,
+        "narHash": "sha256-AH23HE+NpJ8aZkvyAHWKPtNoQSJatkFXwh6rgeKQ42o=",
+        "owner": "privet-kitty",
+        "repo": "wild-package-inferred-system",
+        "rev": "800b5f89b61cc4a0a9cf14706fd3f7e7fcd3e539",
+        "type": "github"
+      },
+      "original": {
+        "owner": "privet-kitty",
+        "repo": "wild-package-inferred-system",
+        "type": "github"
       }
     },
     "wu-src": {
