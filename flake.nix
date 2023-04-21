@@ -1,5 +1,5 @@
 {
-  description = "Demo lispPackagesLite app using flakes";
+  description = "Fetch latest source for all derivations in a package";
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     cl-nix-lite = {
