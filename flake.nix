@@ -2,7 +2,10 @@
   description = "Demo lispPackagesLite app using flakes";
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    hly-nixpkgs.url = "github:hraban/nixpkgs/feat/lisp-packages-lite";
+    cl-nix-lite = {
+      flake = false;
+      url = "github:hraban/cl-nix-lite";
+    };
     gitignore = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:hercules-ci/gitignore.nix";
@@ -21,13 +24,13 @@
     };
   };
   outputs = {
-    self, nixpkgs, hly-nixpkgs, gitignore, flake-utils, infix-src, wu-src, winfer-src
+    self, nixpkgs, cl-nix-lite, gitignore, flake-utils, infix-src, wu-src, winfer-src
   }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
         cleanSource = src: gitignore.lib.gitignoreSource (pkgs.lib.cleanSource src);
-        inherit (pkgs.callPackage hly-nixpkgs {}) lispPackagesLite;
+        lispPackagesLite = import cl-nix-lite { inherit pkgs; };
       in
       with lispPackagesLite;
       let
@@ -60,9 +63,10 @@
                 rutils
                 winfer
               ];
+              dontStrip = true;
               src = cleanSource ./.;
               meta = {
-                license = "AGPLv3";
+                license = pkgs.lib.licenses.agpl3Only;
               };
             };
           };
